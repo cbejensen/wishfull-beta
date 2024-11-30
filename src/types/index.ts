@@ -13,7 +13,7 @@ export interface Wish {
   price?: number;
   priority: number;
   fulfilled: boolean;
-  createdAt: string;
+  created_at: string;
 }
 
 export interface WishlistStore {
