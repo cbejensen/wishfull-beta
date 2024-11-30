@@ -49,7 +49,6 @@ export const Navigation: React.FC<NavigationProps> = ({ user }) => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <span className="text-gray-700">Welcome, {user.name}</span>
             <button
               onClick={() => supabase.auth.signOut()}
               className="flex items-center text-gray-600 hover:text-gray-900"
