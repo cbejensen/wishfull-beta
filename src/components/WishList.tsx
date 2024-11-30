@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { WishCard } from './WishCard';
 import { EmptyState } from './EmptyState';
 import { useWishlistStore } from '../store/wishlistStore';
-import type { User } from '../types';
 import { ArrowUpDown } from 'lucide-react';
+import { User } from '../types';
 
 interface WishListProps {
   currentUser: User;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { ExternalLink, Gift } from 'lucide-react';
-import type { Wish } from '../types';
 import { useWishlistStore } from '../store/wishlistStore';
 import { PriorityDots } from './PriorityDots';
+import { Tables } from '../types';
 
 interface WishCardProps {
-  wish: Wish;
+  wish: Tables<'wishes'>;
   isOwner: boolean;
 }
 

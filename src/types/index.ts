@@ -1,26 +1,18 @@
+import { Tables } from './database';
+
 export interface User {
-  id: string;
   email: string;
+  id: string;
   name: string;
 }
 
-export interface Wish {
-  id: string;
-  user_id: string;
-  title: string;
-  description?: string;
-  link?: string;
-  price?: number;
-  priority: number;
-  fulfilled: boolean;
-  created_at: string;
-}
-
 export interface WishlistStore {
-  wishes: Wish[];
+  wishes: Tables<'wishes'>[];
   isLoading: boolean;
   error: string | null;
   fetchWishes: () => Promise<void>;
-  addWish: (wish: Omit<Wish, 'id' | 'user_id' | 'fulfilled' | 'createdAt'>) => Promise<void>;
+  addWish: (wish: Omit<Tables<'wishes'>, 'id' | 'user_id' | 'fulfilled' | 'created_at'>) => Promise<void>;
   fulfillWish: (wishId: string) => Promise<void>;
 }
+
+export * from './database'

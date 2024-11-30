@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { supabase } from '../lib/supabase';
-import type { Wish, WishlistStore } from '../types';
+import type { WishlistStore } from '../types';
+import type { Tables } from '../types/database';
 
 export const useWishlistStore = create<WishlistStore>((set) => ({
   wishes: [],
@@ -20,7 +21,7 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      set({ wishes: data as Wish[], error: null });
+      set({ wishes: data as Tables<'wishes'>[], error: null });
     } catch (error) {
       set({ error: (error as Error).message });
     } finally {
