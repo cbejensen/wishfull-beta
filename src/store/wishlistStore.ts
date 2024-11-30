@@ -10,9 +10,13 @@ export const useWishlistStore = create<WishlistStore>((set) => ({
   fetchWishes: async () => {
     set({ isLoading: true });
     try {
+      const user = await supabase.auth.getUser();
+      if (!user.data.user) return;
+      
       const { data, error } = await supabase
         .from('wishes')
         .select('*')
+        .eq('user_id', user.data.user.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;

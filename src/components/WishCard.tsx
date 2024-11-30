@@ -32,6 +32,7 @@ export const WishCard: React.FC<WishCardProps> = ({ wish, isOwner }) => {
         <div className="flex space-x-2">
           {wish.link && (
             <a
+              aria-label='open link to product'
               href={wish.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -42,6 +43,7 @@ export const WishCard: React.FC<WishCardProps> = ({ wish, isOwner }) => {
           )}
           {!isOwner && !wish.fulfilled && (
             <button
+              aria-label="fulfill wish"
               onClick={() => fulfillWish(wish.id)}
               className="text-purple-500 hover:text-purple-600"
             >
