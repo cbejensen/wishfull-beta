@@ -5,6 +5,7 @@ export const AuthForm: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -31,11 +32,12 @@ export const AuthForm: React.FC = () => {
           password: formData.password,
           options: {
             data: {
-              name: formData.name,
+              display_name: formData.name,
             },
           },
         });
         if (authError) throw authError;
+        setShowConfirmation(true);
       }
     } catch (error: any) {
       if (error.status === 429) {
@@ -43,12 +45,7 @@ export const AuthForm: React.FC = () => {
       } else {
         setError(error.message || 'An error occurred during authentication.');
       }
-    } finally {
-      // Add a slight delay before allowing new submissions
-      setTimeout(() => {
-        setIsSubmitting(false);
-      }, 2000);
-    }
+    } 
   };
 
   return (
@@ -60,6 +57,12 @@ export const AuthForm: React.FC = () => {
       {error && (
         <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
           {error}
+        </div>
+      )}
+      
+      {showConfirmation && !error && (
+        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+          Please check your email for a confirmation link to complete your registration.
         </div>
       )}
       

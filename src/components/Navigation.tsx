@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Gift, Plus, LogOut } from 'lucide-react';
+import { Gift, Plus, LogOut, Users } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { User } from '../types';
 import { globals } from '../contants';
@@ -45,6 +45,16 @@ export const Navigation: React.FC<NavigationProps> = ({ user }) => {
               >
                 Add Wish
               </Link>
+              <Link
+                to="/friends"
+                className={`px-3 py-2 rounded-md text-sm font-medium ${
+                  location.pathname === '/friends'
+                    ? 'text-purple-600 bg-purple-50'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Friends
+              </Link>
             </div>
           </div>
 
@@ -62,7 +72,7 @@ export const Navigation: React.FC<NavigationProps> = ({ user }) => {
 
       {/* Mobile navigation */}
       <div className="sm:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
-        <div className="grid grid-cols-2 gap-1 p-2">
+        <div className="grid grid-cols-3 gap-1 p-2">
           <Link
             to="/"
             className={`flex items-center justify-center p-3 rounded-md ${
@@ -84,6 +94,17 @@ export const Navigation: React.FC<NavigationProps> = ({ user }) => {
           >
             <Plus className="w-5 h-5" />
             <span className="ml-2">Add Wish</span>
+          </Link>
+          <Link
+            to="/friends"
+            className={`flex items-center justify-center p-3 rounded-md ${
+              location.pathname === '/friends'
+                ? 'text-purple-600 bg-purple-50'
+                : 'text-gray-600'
+            }`}
+          >
+            <Users className="w-5 h-5" />
+            <span className="ml-2">Friends</span>
           </Link>
         </div>
       </div>
